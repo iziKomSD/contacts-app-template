@@ -1,11 +1,11 @@
 {
   "name": "vite_test",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/vite_test/",
+    "build": "vite build --base=/contacts-app-template/",
     "preview": "vite preview"
   },
   "devDependencies": {
