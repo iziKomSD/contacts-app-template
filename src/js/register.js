@@ -17,11 +17,16 @@ function openModal() {
     form.addEventListener("submit", registerUser);
     
 }
-function registerUser(event) {
+async function registerUser(event) {
     event.preventDefault();
     const name = event.currentTarget.elements.name.value.trim();
     const email = event.currentTarget.elements.email.value.trim();
     const password = event.currentTarget.elements.password.value.trim();
-    registerUserService({name, email, password})
+    try {
+        const data = await registerUserService({name, email, password})
+        localStorage.setItem("token", data.token)
+    } catch (error) {
+
+    }
 
 }
