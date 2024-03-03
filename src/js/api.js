@@ -9,8 +9,17 @@ const registerUserService = async user => {
 		const { data } = await axios.post('/users/signup', user);
 		return data;
 	} catch (error) {
-		console.log(error.message);
+		console.error('Error:', error.response.data);
 	}
 };
 
-export { registerUserService };
+const loginUserService = async user => {
+	try {
+		const { data } = await axios.post('/users/login', user);
+		return data;
+	} catch (error) {
+		console.error('Error:', error.response.data);
+	}
+};
+
+export { registerUserService, loginUserService };

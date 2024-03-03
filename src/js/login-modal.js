@@ -1,28 +1,28 @@
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-import { registerUserService } from './api';
+import { loginUserService } from './api';
 
-const btnRegister = document.querySelector('.sign-up-btn');
-const instance = basicLightbox.create(document.querySelector('#register'));
+const btnLogin = document.querySelector('.login-btn');
+const instance = basicLightbox.create(document.querySelector('#login'));
 
-btnRegister.addEventListener('click', openModal);
+btnLogin.addEventListener('click', openModal);
 
 function openModal() {
 	//call form to show
 	instance.show();
 	//find form and put listener to get data from form
-	const form = document.querySelector('.register-form');
-	form.addEventListener('submit', registerUser);
+	const form = document.querySelector('.login-form');
+	form.addEventListener('submit', loginUser);
 }
-async function registerUser(event) {
+async function loginUser(event) {
 	event.preventDefault();
-	const name = event.currentTarget.elements.name.value.trim();
 	const email = event.currentTarget.elements.email.value.trim();
 	const password = event.currentTarget.elements.password.value.trim();
 	try {
-		const data = await registerUserService({ name, email, password });
+		const data = await loginUserService({ email, password });
 		localStorage.setItem('token', data.token);
 		instance.close();
+		location.replace('/contacts.html');
 	} catch (error) {
 		console.log(error.message);
 	}
